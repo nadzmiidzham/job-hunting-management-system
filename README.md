@@ -1,129 +1,35 @@
-# TODO: update the documentation (remove all carsome related comments)
+## Background
+I want to learn programming back through building an actual system for myself. At the moment, I am struggling to find a new job for myself. Below are my problems that I intend to solve by building this system.
+## Problem Statement
+I sent a lot of job applications. However, I usually lost track of the job applications after I sent them. I do not know which job application I have sent and which one I should be focusing on. When I managed to get an interview, I always become anxious due to I am not able managed to handle the stress and manage myself. I literally do not know what i should be doing next and how to plan out properly for the job interview. I also always get lost in the details as I do not know what I should be doing next and what I should be looking for.
 
+I used AI to help me keep track of this but its still too much for me to handle and understand what should I be doing. I realized that I might be putting my thinking toward the AI instead of deciding for myself what I should be doing. AI helps me a lot when I was doing my resume. However, I became too attached to let AI do everything for me and this makes my own skill as developer rusty since I haven't used them in a while.
 
-# NestJS Base API
+So, I am thinking of coding a simple system that would help me to:
+1. Sharpen my rusty programming skills
+2. Manage my job hunting goals
 
-## Introduction
-This repository is to serves as a base project for all Carsome Microservice API. The purpose is to maintain the consistency of coding styles and structure across all the projects in Carsome.
+## User Story
+### Functional Requirement
+#### MVP
 
-# Project Setup
+| #   | As a ...   | I want to ...                              | So that ...                                                                                    |
+| --- | ---------- | ------------------------------------------ | ---------------------------------------------------------------------------------------------- |
+| 1   | Job Hunter | keep track of my job application statuses  | I know which of the job listing I should be asking for follow up                               |
+| 2   | Job Hunter | see the history of my own job application  | I can decide what I should be focusing next at any stage of the job application                |
+| 3   | Job Hunter | write notes for a specific job application | I can put a note to my future self on what to prepare for an interview                         |
+| 4   | Job Hunter | keep track of feedback from an interview   | I can learn from my previous interview and apply the things I've learned for my next interview |
+| 5   | Job Hunter | see what needs my attention today          | I can immediately focus my attention and invest my time properly on a given day                |
+#### Good to Have
 
-## Rag CLI
-This boilerplate will use `bin/rag.sh` to scaffold some common tasks. 
-
-Accepted commands:
-
-| Command       | Alias       |
-| ------------- |-------------|
-| scaffold      | s           |
-| help          | -h          |
-| version       | -v          |
-
-To begin development, you can use this commands:
-
-### For Windows
-
-```
-$ bin\rag.sh -h 
-```
-**Notice on Windows**
-
-You can use `git-bash` as your default terminal. In fact, when you execute this command, it will 
-open up git-bash (if it is installed).
-
-Open up `git-bash`, change directory to your working project, and execute the above command.
-
-### For MacOS & Linux
-
-```
-$ bin/rag.sh -h 
-```
-
-# Database Setup
-## For MySQL
-```bash
-# following command will copy the dependencies and copy the files accordingly
-sh setup/mysql.sh
-```
-
-Make sure includes env key in the `.env`
-```
-MYSQL_HOST=
-MYSQL_PORT=
-MYSQL_USERNAME=
-MYSQL_PASSWORD=
-MYSQL_DATABASE=
-```
-
-## For MongoDB
-```bash
-# following command will copy the dependencies and copy the files accordingly
-sh setup/mongodb.sh
-```
-
-Make sure includes env key in the `.env`
-```
-MONGODB_ENDPOINT=
-```
-
-# Guidelines
-
-## Coding standard
-It is recommended to read [Coding Guideline](https://carsome.atlassian.net/wiki/spaces/TECH/pages/371490826/Coding+Standard) if you are not familiar.
-
-## Controller
-The responsibility of the controller should:
-- Define the endpoint
-- Input validation (Suppose handle by DTO. Special case validation if DTO cant handle.)
-- Accept request input and peform transformation (if any) and pass to service.
-- Response transformation
-Note: No business logic at this layer
-
-## Service
-The responsibility of the service should:
-- Business logic
-- Perform database query via ORM (Mongoose/ TypeORM). Where 
-- Throw business logic error
-- Calling to other API if any
-
-## Model
-The model is referring to Mongoose or TypeORM. The responsibility of it should:
-- Connection to DB
-- Perform query
-It is recommend that Model for that particular domain should only accessible by same domain service. Eg: `User` model should in `UserService` only. Any perform to `User` should do via `UserService` to separate out the concern.
-
-## DTO
-The responsibility of it should:
-- Request validation, by utilise the [Class Validator library](https://github.com/typestack/class-validator). Any database validation such as checking the provided ID is exists, can be perform at `Controller` layer
-- Response transformation. Kindly refer [bidding @fromModel](https://gitlab.com/carsome/api/v4b-tinker-bidding-service/-/blob/develop/src/app/car/dto/car.dto.ts) for the example.
-- It is advisable that to separate out the `request` and `response` DTO for maintainbility. 
-
-## Exception
-The responsibility of it should:
-- Throw the exception for the given scenario. 
-- Refer [here](https://carsome.atlassian.net/wiki/spaces/TECH/pages/146800710/Error+Response) for more information about error
-
-
-# Folder Structure
-src<br/>
-<p style="padding-left:10px">--main.ts // NestJS application boostrap script.
-<p style="padding-left:10px">--required-env.ts // Script to ensure required env will be included during app startup. It is recommended to insert the new entry here when introduce new env to system.
-<p style="padding-left:10px">|-- app // all your application domain will be under this folder </p>
-<p style="padding-left:25px">|-- {module} // resource domain under here. Eg: User, all user related codes under this folder</p>
-<p style="padding-left:30px">-- {module}.service.ts -- business logic resides here</p>
-<p style="padding-left:30px">-- {module}.model.ts -- database model. eg: mongoose/typeorm</p>
-<p style="padding-left:30px">-- {module}.module.ts</p>
-<p style="padding-left:30px">-- {module}.controller.ts -- routing logic only. Simple validation can be done here too. Data transformation handling should under here too.</p>
-<p style="padding-left:40px">|-- dto // contains all the request/response/query-params of the dto. Validation logic using class-validator</p>
-<p style="padding-left:40px">|-- exception // contains the resource exception</p>
-<p style="padding-left:40px">|-- query-filter // contains the query filter, helpers to do the dynamic filter based on query params</p>
-<p style="padding-left:40px">|-- validator // contains custom validator using class-validator</p>
-<p style="padding-left:10px">|-- common // application level common codes. Recommend not to add anything else under here or modify the codes. Seek for advise if needed.</p>
-<p style="padding-left:30px">|-- enum // contains the application level enum. The resource based enum should under its resource folder itself</p>
-<p style="padding-left:30px">|-- exception // contains the application exception class. Note: Do not place service based exception here.</p>
-<p style="padding-left:30px">|-- filter // application level NestJS filter </p>
-<p style="padding-left:30px">|-- interceptor // application level NestJS intercepter </p>
-<p style="padding-left:30px">|-- logger // application level logger lib. Recommend to use this logger </p>
-<p style="padding-left:30px">|-- pagination // application level pagination helper. </p>
-<p style="padding-left:30px">|-- query params // application level query params helper. </p>
-<p style="padding-left:30px">|-- util // application level utilities helper. May put your helpers here that is keep using by different services in the application itself </p>
+| #   | As a ...   | I want to ...                                                                         | So that ...                                                                                                                                   |
+| --- | ---------- | ------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | Job Hunter | be recommended on what I should be doing for a specific job application               | I can plan my next move and invest my time properly on a job that I want                                                                      |
+| 2   | Job Hunter | read a `Situation,Task,Action,Result` (`STAR`) description of myself before interview | I do not waste my time with talking about things that are unnecessary                                                                         |
+| 3   | Job Hunter | review my resume for a specific job description                                       | I can gauge on whether I would be a top applicant for that job application and see the gaps in my skills for a specific role                  |
+| 4   | Job Hunter | generate a specific resume for a specific job description                             | I can properly arrange my wordings within my resume to match the keyword from the job descriptions                                            |
+| 5   | Job Hunter | generate a PDF version of a Markdown formatted resume                                 | I can just write and edit my resume easily in Markdown without having to manually write them in Words document and then convert them into PDF |
+### Non-Functional Requirement
+- The systems are just a single user.
+- For MVP, just locally hosted is fine, but remotely hosted is best.
+- For MVP, just the backend API is fine, but web frontend is best.
