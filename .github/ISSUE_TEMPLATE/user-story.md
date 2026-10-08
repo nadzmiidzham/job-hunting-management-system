@@ -8,14 +8,14 @@ labels: user-story
 ## User Story
 
 **As a** <!-- [user type] -->,
-**I want to** <!-- [specific action] -->,
-**So that** <!-- [reason] -->.
+**I want to** <!-- [goal or feature] -->,
+**So that** <!-- [benefit or outcome] -->.
 
 ## Acceptance Criteria
 
-| Given | When | Then |
-| --- | --- | --- |
-| <!-- [precondition] --> | <!-- [action] --> | <!-- [outcome] --> |
+- [ ] **Given** <!-- [precondition] -->
+    - **When** <!-- [action] -->
+    - **Then** <!-- [expected behaviour] -->
 
 ## Tasks
 
@@ -23,4 +23,4 @@ labels: user-story
 
 ## Notes
 
-<!-- Add any additional context -->
+<!-- Add any extra context, assumptions, or edge cases -->
