@@ -5,12 +5,6 @@ title: "[US] "
 labels: user-story
 ---
 
-<!--
-### Context
-
-[Background info about why this matters]
--->
-
 ## User Story
 
 **As a** <!-- [user type] -->,
@@ -19,9 +13,9 @@ labels: user-story
 
 ## Acceptance Criteria
 
-| # | Given | When | Then |
-| --- | --- | --- | --- |
-| - [ ] | <!-- [precondition] --> | <!-- [action] --> | <!-- [outcome] --> |
+| Given | When | Then |
+| --- | --- | --- |
+| <!-- [precondition] --> | <!-- [action] --> | <!-- [outcome] --> |
 
 ## Tasks
 
