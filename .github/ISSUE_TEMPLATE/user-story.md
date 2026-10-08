@@ -17,10 +17,6 @@ labels: user-story
     - **When** <!-- [action] -->
     - **Then** <!-- [expected behaviour] -->
 
-## Tasks
-
-- [ ] Task 1
-
 ## Notes
 
 <!-- Add any extra context, assumptions, or edge cases -->
