@@ -1,7 +1,7 @@
 ---
 name: User Story
 about: Create a new user story
-title: "[US] "
+title: "[JHMS] "
 labels: user-story
 ---
 
